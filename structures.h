@@ -33,7 +33,7 @@ enum msg_types
 enum report_types
 {
   Re_OK = 0,
-  Re_None = 1
+  Re_None
 }
 
 enum status_types
@@ -48,16 +48,16 @@ enum status_types
 enum denial_types
 {
   Den_Engine = 1,
-  Den_FlyControl = 2,
-  Den_RouteDiff = 3 // route diffraction
+  Den_FlyControl,
+  Den_RouteDiff // route deviation
 }
 
 /* Confirmation Status types */
 enum confirm_type 
 {
   Confirm_Verify = 1, // verification of confirmation
-  Confirm_Cancel = 2, // cancellation of confirmation
-  Confirm_ReqReport = 3 // request for report
+  Confirm_Cancel, // cancellation of confirmation
+  Confirm_ReqReport // request for report
 }
 
 /* --------------- Base structures --------------- */
@@ -69,44 +69,37 @@ struct message
 	uint32_t checksum;	
 }
 
-struct checkpoint
+struct point
 {
-	uint16_t id;
 	float longitude; 
 	float latitude;
 }
 
-struct emergpoint // emergency point
+struct checkpoint
 {
-	uint16_t id;
-	float longitude;
-	float latitude;
-}
-
-struct edge
-{
-	uint16_t id;
-	uint16_t id_cpt1; // identifier of checkpoint 1
-	uint16_t id_cpt2; // identifier of checkpoint 2
+	struct point position;
+	struct point emergency;
 	uint16_t speed;
 	uint16_t altitude;
 }
 
-struct routedge // = route edge
+struct route 
 {
-	uint16_t edge_id; 
-	struct routedge *prev; // previous edge
+	uint16_t count; // checkpoints count in route
+	struct checkpoint cpt[0]; // checkpoint pointer 
 }
 
 struct state
 {
-	uint8_t edge_id;
+	// Where and how should I put information about next checkpoint?
+	// struct checkpoint cpt;
 	uint8_t status; 
 
 	float longitude; 
 	float latitude; 
 	float heading; 
-	uint16_t baroalt; // barometric altitude 
+	uint16_t baroaltabs; // absolute barometric altitude
+	uint16_t baroaltrel; // relative barometric altitude
 	uint16_t gpsalt; // GPS altitude (in decs of cm)
 	uint16_t temperature; // (in 0.01 degrees centigrade)
 	uint16_t voltage; // (in 0.01 volts)
@@ -156,7 +149,7 @@ struct msg_raw // raw command can be used all purposes: emergency, hand control,
 	struct message msg;
 }
 
-/* What is this command for? */
+// correction of relative barometric altitude
 struct msg_zerobaroalt
 {
 	struct message msg;
