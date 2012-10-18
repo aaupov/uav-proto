@@ -4,7 +4,7 @@
 /* 
  * TODO: Authentication commands!
  * TODO: Enumerate more report types.
- * TODO:
+ * TODO: Typedef maybe?
  */
 
 /* Platform independent types */
@@ -18,9 +18,7 @@ enum msg_types
   Msg_NewRoute = 1,
   Msg_CleanRoute,
   Msg_UpdatePoint,
-  Msg_UpdateEdge,
 	Msg_Emergency,
-	Msg_ctrl_XBee,
 	Msg_ctrl_hand,
   // Messages from board
   Msg_Heartbeat = 101,
@@ -83,18 +81,8 @@ struct checkpoint
 	uint16_t altitude;
 }
 
-struct route 
-{
-	uint16_t count; // checkpoints count in route
-	struct checkpoint cpt[0]; // checkpoint pointer 
-}
-
 struct state
 {
-	// Where and how should I put information about next checkpoint?
-	// struct checkpoint cpt;
-	uint8_t status; 
-
 	float longitude; 
 	float latitude; 
 	float heading; 
@@ -108,43 +96,37 @@ struct state
 	uint8_t gsmlevel; 
 	uint16_t last_msgnum; // last received message number
 	uint8_t denial; 
-	char handlregime; //Режим управления («ручное», «через СУ» ,«X-bee», «GSM»)
 	uint16_t servoch1;  
 	uint16_t servoch2; 
 	uint16_t servoch3; 
 	uint16_t servoch4; 
 	uint16_t servoch5; 
 	uint16_t servoch6;
+
+	uint16_t speed; // (in mps?)
+	uint8_t status; 
+	// Where and how should I put information about next checkpoint?
+	// struct checkpoint cpt;
 }
 
 /* --------------- Message structures --------------- */
 /* --------------- (1) Messages to board --------------- */
 
-struct msg_setroute
+struct msg_route
 {
 	struct message msg;
-	unsigned short int lenght; // quantity of checkpoints
-	uint16_t queue[]; // queue of checkpoints' identifiers
-}
-
-struct msg_cleanroute
-{
-	struct message msg;
+	uint16_t count; // checkpoints quantity in route
+	struct checkpoint queue[0]; // checkpoint pointer 
 }
 
 struct msg_updcpt // = update checkpoint
 {
 	struct message msg;
+	uint16_t routenum; // ordinal number in route
 	struct checkpoint pt;
 }
 
-struct msg_updedge // = update edge
-{
-	struct message msg;
-	struct edge ed;
-}
-
-struct msg_raw // raw command can be used all purposes: emergency, hand control, X-Bee, power control
+struct msg_raw // raw command can be used for all purposes: emergency, clean route, hand control, power control.
 {
 	struct message msg;
 }
