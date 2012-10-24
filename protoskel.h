@@ -5,12 +5,22 @@
  * TODO: Enumerate more report types.
  */
 
+#include <inttypes.h>
+
+/* Base variables */
+
+static uint32_t dcp_num = 0;
+static uint32_t hcp_num = 0;
+
 /* Base constants */ 
+
+// Quantity of servosupplies
+#define Srv_Count 6
 
 enum protocols
 {
-	Proto_dispatcher = 1,
-	Proto_hand
+	Proto_Dispatcher = 1,
+	Proto_Hand
 };
 
 enum msg_dcp_types
@@ -32,7 +42,7 @@ enum msg_dcp_types
 
 enum msg_hcp_types
 {
-	Msg_srv = 1  
+	Msg_Srv = 1  
 } ; 
 
 enum report_types
@@ -91,12 +101,7 @@ struct checkpoint
 
 struct servos // servosupplies position
 {
-	uint16_t servoch1;  
-	uint16_t servoch2; 
-	uint16_t servoch3; 
-	uint16_t servoch4; 
-	uint16_t servoch5; 
-	uint16_t servoch6;
+	uint16_t channel[Srv_Count];
 };
 
 struct state
@@ -121,5 +126,8 @@ struct state
 	struct servos srv;
 	struct checkpoint cpt;
 };
+
+/* Base functions */
+uint32_t new_msg_number(uint8_t protocol);
 
 #endif

@@ -6,8 +6,6 @@
  * TODO: Typedef maybe?
  */
 
-/* Platform independent types */
-#include <inttypes.h>
 /* Basement constantd and structures for all plane protocols */
 #include "protoskel.h"
 

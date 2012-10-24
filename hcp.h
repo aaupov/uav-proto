@@ -1,8 +1,6 @@
 #ifndef HAND_CONTROL_PROTOCOL
 #define HAND_CONTROL_PROTOCOL
 
-/* Platform independent types */
-#include <inttypes.h>
 /* Basement constantd and structures for all plane protocols */
 #include "protoskel.h"
 
@@ -24,6 +22,8 @@ struct msg_report;
 #include "dcp.h"
 #endif
 
+/* HCP functions */
+struct msg_srvctl* cmd_srvctl(struct servos srv);
 
 #endif
 
