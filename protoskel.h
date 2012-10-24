@@ -11,7 +11,7 @@ enum protocols
 {
 	Proto_dispatcher = 1,
 	Proto_hand
-}
+};
 
 enum msg_dcp_types
 {
@@ -28,18 +28,18 @@ enum msg_dcp_types
 	Msg_ReqConfirm = 101,
 	Msg_Confirm,
 	Msg_Report
-}
+};
 
 enum msg_hcp_types
 {
 	Msg_srv = 1  
-}  
+} ; 
 
 enum report_types
 {
 	Re_OK = 0,
 	Re_None
-}
+};
 
 enum status_types
 {
@@ -48,14 +48,14 @@ enum status_types
 	Stat_Emergency,
 	Stat_TakingOff,
 	Stat_Spinning // spinning round a point
-}
+};
 
 enum denial_types
 {
 	Den_Engine = 1,
 	Den_FlyControl,
 	Den_RouteDiff // route deviation
-}
+};
 
 /* Confirmation Status types */
 enum confirm_type 
@@ -63,7 +63,7 @@ enum confirm_type
 	Confirm_Verify = 1, // verification of confirmation
 	Confirm_Cancel, // cancellation of confirmation
 	Confirm_ReqReport // request for report
-}
+};
 
 /* Base structures */
 
@@ -73,13 +73,13 @@ struct message
 	uint8_t type; // command type identifier
 	uint32_t num; // ordinal number of message
 	uint32_t checksum;	
-}
+};
 
 struct point
 {
 	float longitude; 
 	float latitude;
-}
+};
 
 struct checkpoint
 {
@@ -87,7 +87,7 @@ struct checkpoint
 	struct point emergency;
 	uint16_t speed;
 	uint16_t altitude;
-}
+};
 
 struct servos // servosupplies position
 {
@@ -97,7 +97,7 @@ struct servos // servosupplies position
 	uint16_t servoch4; 
 	uint16_t servoch5; 
 	uint16_t servoch6;
-}
+};
 
 struct state
 {
@@ -120,6 +120,6 @@ struct state
 	// Why do we need to send this information in heartbeat? Vitalii.
 	struct servos srv;
 	struct checkpoint cpt;
-}
+};
 
 #endif

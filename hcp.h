@@ -9,9 +9,8 @@
 struct msg_srvctl // contains servosupplies position
 {
 	struct message msg;
-	struct servopos;
-
-}
+	struct servos srv;
+};
 
 /* useful commands from DCP */
 
