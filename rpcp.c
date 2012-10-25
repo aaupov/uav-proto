@@ -6,7 +6,8 @@
 #include "dcp.h"
 #include "hcp.h"
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
   return 0;
 }

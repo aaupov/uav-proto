@@ -15,7 +15,7 @@ static uint32_t hcp_num = 0;
 /* Base constants */ 
 
 // Quantity of servosupplies
-#define Srv_Count 6
+#define CP_Srv_Count 6
 
 enum protocols
 {
@@ -32,6 +32,7 @@ enum msg_dcp_types
 	Msg_Emergency,
 	Msg_HandOn,
 	Msg_HandOff,
+	Msg_ZeroBaroAlt,
 	// Messages from board
 	Msg_Heartbeat = 51,
 	// Control messages
@@ -101,7 +102,7 @@ struct checkpoint
 
 struct servos // servosupplies position
 {
-	uint16_t channel[Srv_Count];
+	uint16_t channel[CP_Srv_Count];
 };
 
 struct state
@@ -122,7 +123,6 @@ struct state
 	uint16_t gpsspeed; // (in km/h)
 	uint16_t airspeed; // (in km/h)
 	uint8_t status; 
-	// Why do we need to send this information in heartbeat? Vitalii.
 	struct servos srv;
 	struct checkpoint cpt;
 };

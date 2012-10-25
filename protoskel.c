@@ -4,7 +4,8 @@
 
 #include "protoskel.h"
 
-uint32_t new_msg_number(uint8_t protocol)
+uint32_t
+new_msg_number(uint8_t protocol)
 {
   /*
    * Input: protocol type;

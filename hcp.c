@@ -6,7 +6,8 @@
 #include <stdlib.h>
 #include <zlib.h>
 
-struct msg_srvctl* cmd_srvctl(struct servos srv)
+struct msg_srvctl*
+cmd_srvctl(struct servos srv)
 {
   struct msg_srvctl *buf;
   buf = malloc(sizeof(struct msg_srvctl));

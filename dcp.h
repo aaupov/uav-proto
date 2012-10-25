@@ -47,19 +47,19 @@ struct msg_heartbeat
 
 /* --------------- (3) Control messages --------------- */
 
+// Request of command confirmation 
+struct msg_reqconfirm 
+{
+	struct message msg;
+	uint16_t cmdnum; 
+};
+
 // Command confirmation
 struct msg_confirm
 {
 	struct message msg;
 	uint16_t cmdnum; // message number of command to confirm 
 	uint8_t status; 
-};
-
-// Request of command confirmation 
-struct msg_reqconfirm 
-{
-	struct message msg;
-	uint16_t cmdnum; 
 };
 
 // Command report
