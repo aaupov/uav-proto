@@ -1,6 +1,6 @@
 CC = c99
-CFLAGS = -Wall -Wno-unused-variable
-LDFLAGS = -lz
+CFLAGS = -Wall 
+LDLIBS = -lz
 
 .PHONY: all
 all: rpcp

@@ -7,11 +7,6 @@
 
 #include <inttypes.h>
 
-/* Base variables */
-
-static uint32_t dcp_num = 0;
-static uint32_t hcp_num = 0;
-
 /* Base constants */ 
 
 // Quantity of servosupplies

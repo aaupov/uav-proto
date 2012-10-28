@@ -4,6 +4,9 @@
 
 #include "protoskel.h"
 
+uint32_t dcp_num = 0;
+uint32_t hcp_num = 0;
+
 uint32_t
 new_msg_number(uint8_t protocol)
 {
@@ -12,18 +15,15 @@ new_msg_number(uint8_t protocol)
    * Output: number of message in protocol;
    * Error: [0] No protocol found;
    */
-  uint32_t *num;
   switch (protocol)
     {
     case Proto_Dispatcher:
-      num = &dcp_num;
-      break;
+      dcp_num++;
+      return dcp_num;
     case Proto_Hand:
-      num = &hcp_num;
-      break;
+      hcp_num++;
+      return hcp_num;
     default:
       return 0;
     }
-  (*num)++;
-  return *num;
 }

@@ -5,6 +5,13 @@
 #include "dcp.h"
 #include <stdlib.h>
 #include <zlib.h>
+#include <string.h>
+
+/*
+ * Stdlib - for malloc;
+ * Zlib - for crc32;
+ * String - for memcpy;
+ */
 
 struct msg_raw*
 cmd_handon()
@@ -170,6 +177,24 @@ cmd_emergency()
       buf->msg.type = Msg_Emergency;
       buf->msg.num = new_msg_number(Proto_Dispatcher);
       buf->msg.checksum = 0;
+      buf->msg.checksum = crc32(0, (Bytef*)&(buf), sizeof(buf));
+    }
+  return buf;
+}
+
+struct msg_route*
+cmd_route(uint16_t count, struct checkpoint *queue)
+{
+  struct msg_route *buf;
+  buf = malloc(sizeof(struct message)+sizeof(uint16_t)+count*sizeof(struct checkpoint));
+  if (buf)
+    {
+      buf->msg.proto = Proto_Dispatcher;
+      buf->msg.type = Msg_NewRoute;
+      buf->msg.num = new_msg_number(Proto_Dispatcher);
+      buf->msg.checksum = 0;
+      buf->count = count;
+      memcpy(queue, buf->queue, count*sizeof(struct checkpoint));
       buf->msg.checksum = crc32(0, (Bytef*)&(buf), sizeof(buf));
     }
   return buf;
