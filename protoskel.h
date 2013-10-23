@@ -38,7 +38,11 @@ enum msg_dcp_types
 
 enum msg_hcp_types
 {
-	Msg_Srv = 1  
+    Msg_Srv = 1,
+    //mod 14_08_13
+    Msg_TwoParam=200
+    //mod 14_08_13
+
 } ; 
 
 enum report_types
@@ -73,7 +77,7 @@ enum confirm_type
 
 /* Base structures */
 
-struct message
+struct message //12byte
 {
 	uint8_t proto; // protocol identifier
 	uint8_t type; // command type identifier
@@ -95,13 +99,17 @@ struct checkpoint
 	uint16_t altitude;
 };
 
-struct servos // servosupplies position
+struct servos // servosupplies position 12byte
 {
 	uint16_t channel[CP_Srv_Count];
 };
 
 struct state
 {
+	//mod 07.04.13
+	float roll;
+	float pitch;
+	//mod
 	float longitude; 
 	float latitude; 
 	float heading; 
