@@ -21,7 +21,8 @@ struct msg_srvctl*
 cmd_srvctl(struct servos srv)
 {
   struct msg_srvctl *buf;
-  buf = (struct msg_srvctl*)malloc(sizeof(struct msg_srvctl));
+  //buf = (struct msg_srvctl*)malloc(sizeof(struct msg_srvctl));
+  buf = malloc(sizeof buf); 
   if (buf)
     {
       buf->msg.proto = Proto_Hand;

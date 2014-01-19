@@ -9,6 +9,19 @@
 /* Basement constantd and structures for all plane protocols */
 #include "protoskel.h"
 
+/* --------------- (0) Extern functions ---------------- */
+
+extern struct msg_raw* cmd_handon();
+extern struct msg_raw* cmd_handoff();
+extern struct msg_heartbeat* cmd_heartbeat(struct state st);
+extern struct msg_reqconfirm* cmd_reqconfirm(uint16_t cmdnum);
+extern struct msg_confirm* cmd_confirm(uint16_t cmdnum, uint8_t status);
+extern struct msg_report* cmd_report(uint16_t cmdnum, uint8_t report);
+extern struct msg_zerobaroalt* cmd_zerobaroalt(uint16_t zerobaroalt);
+extern struct msg_updcpt* cmd_updcpd(uint16_t routenum, struct checkpoint pt);
+extern struct msg_raw* cmd_cleanroute();
+extern struct msg_route* cmd_route(uint16_t count, struct checkpoint *queue);
+
 /* --------------- (1) Messages to board --------------- */
 
 struct msg_route

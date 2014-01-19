@@ -64,7 +64,7 @@ enum denial_types
 {
 	Den_Engine = 1,
 	Den_FlyControl,
-	Den_RouteDiff // route deviation
+	Den_RouteDiff // route discrepancy
 };
 
 /* Confirmation Status types */
