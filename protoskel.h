@@ -6,6 +6,18 @@
  */
 
 #include <inttypes.h>
+#include <stdlib.h>
+//#include <zlib.h>
+#include <string.h>
+
+/* temporary hack for crc32 */
+typedef uint8_t Bytef;
+
+/*
+ * Stdlib - for malloc;
+ * Zlib - for crc32;
+ * String - for memcpy;
+ */
 
 /* Base constants */ 
 
@@ -132,5 +144,6 @@ struct state
 
 /* Base functions */
 uint32_t new_msg_number(uint8_t protocol);
+uint32_t crc32(uint32_t old, const Bytef* buf, uint32_t len);
 
 #endif

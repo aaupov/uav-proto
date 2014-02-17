@@ -3,15 +3,6 @@
  */
 
 #include "dcp.h"
-#include <stdlib.h>
-#include <zlib.h>
-#include <string.h>
-
-/*
- * Stdlib - for malloc;
- * Zlib - for crc32;
- * String - for memcpy;
- */
 
 struct msg_raw*
 cmd_handon()

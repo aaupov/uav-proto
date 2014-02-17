@@ -3,8 +3,6 @@
  */
 
 #include "hcp.h"
-#include <stdlib.h>
-#include <zlib.h>
 
 uint32_t simple_sum_hash( uint8_t* data, size_t datasize)
 {
@@ -30,8 +28,8 @@ cmd_srvctl(struct servos srv)
       buf->msg.num = new_msg_number(Proto_Hand);
       buf->msg.checksum = 0;
       buf->srv = srv;
-      //buf->msg.checksum = crc32(0, (Bytef*)&(buf), sizeof(buf));
-      buf->msg.checksum = simple_sum_hash( ( uint8_t*)buf, sizeof( buf));
+      buf->msg.checksum = crc32(0, (Bytef*)&(buf), sizeof(buf));
+      //buf->msg.checksum = simple_sum_hash( ( uint8_t*)buf, sizeof( buf));
     }
   return buf;
 }
