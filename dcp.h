@@ -21,6 +21,7 @@ struct msg_zerobaroalt* cmd_zerobaroalt(uint16_t zerobaroalt);
 struct msg_updcpt* cmd_updcpd(uint16_t routenum, struct checkpoint pt);
 struct msg_raw* cmd_cleanroute();
 struct msg_route* cmd_route(uint16_t count, struct checkpoint *queue);
+struct msg_raw* cmd_emergency();
 
 /* --------------- (1) Messages to board --------------- */
 
